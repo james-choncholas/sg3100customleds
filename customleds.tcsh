@@ -17,11 +17,12 @@
 
 # Some constants
 set if = ${1}
-set mb =           1000000;
-set hundredmb =  100000000;
-set halfgb =     500000000;
-set gb =        1000000000;
-set twogb =     2000000000;
+set l1 =    900000;
+set l2 =  50000000;
+set l3 =  90000000;
+set l4 = 200000000;
+set l5 = 500000000;
+
 
 switch ($if)
 case "mvneta0":
@@ -82,28 +83,28 @@ case "none":
 case "Online": 
 
     ### The WAN is up, set the color to bandwidth usage
-    if ($sum <= $mb) then
+    if ($sum <= $l1) then
         echo no traffic, led dark
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=1
         /usr/sbin/gpioctl $pinr duty 0
         /usr/sbin/gpioctl $ping duty 0
         /usr/sbin/gpioctl $pinb duty 0
 
-    else if ($sum <= $hundredmb) then
+    else if ($sum <= $l2) then
         echo low traffic, led solid green
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=1
         /usr/sbin/gpioctl $pinr duty 0
         /usr/sbin/gpioctl $ping duty 32
         /usr/sbin/gpioctl $pinb duty 0
 
-    else if ($sum <= $halfgb) then
+    else if ($sum <= $l3) then
         echo medium traffic, led solid blue
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=1
         /usr/sbin/gpioctl $pinr duty 0
         /usr/sbin/gpioctl $ping duty 0
         /usr/sbin/gpioctl $pinb duty 32
 
-    else if ($sum <= $gb) then
+    else if ($sum <= $l4) then
         echo medium-high traffic, led slow flashing purple
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=0
         /sbin/sysctl dev.gpio.0.led.$lednum.T2=1040
@@ -112,7 +113,7 @@ case "Online":
         /usr/sbin/gpioctl $ping duty 0
         /usr/sbin/gpioctl $pinb duty 32
 
-    else if ($sum <= $twogb) then
+    else if ($sum <= $l5) then
         echo high traffic, led fast flashing bright purple
         # Fast flashing purple
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=0
