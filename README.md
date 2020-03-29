@@ -14,11 +14,12 @@ See script for more info.
 # Installation
 First go to Diagnostics -> Edit File and add the script at /root/customleds.tcsh
 
-Then add a few cron entries (may need Cron package) that runs the following commands every minute by the root user.
-
+Then add a few cron entries (may need Cron package) that runs the following commands every minute by the root user:
+```
 /usr/bin/nice -n20 /bin/tcsh /root/customleds.tcsh mvneta0 > /dev/null 2>&1
 /usr/bin/nice -n20 /bin/tcsh /root/customleds.tcsh mvneta1 > /dev/null 2>&1
 /usr/bin/nice -n20 /bin/tcsh /root/customleds.tcsh mvneta2 > /dev/null 2>&1
+```
 
 
 # Dev Notes
