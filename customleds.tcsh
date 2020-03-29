@@ -86,9 +86,9 @@ case "Online":
     if ($sum <= $l1) then
         echo no traffic, led dark
         /sbin/sysctl dev.gpio.0.led.$lednum.pwm=1
-        /usr/sbin/gpioctl $pinr duty 0
-        /usr/sbin/gpioctl $ping duty 0
-        /usr/sbin/gpioctl $pinb duty 0
+        /usr/sbin/gpioctl $pinr duty 4
+        /usr/sbin/gpioctl $ping duty 4
+        /usr/sbin/gpioctl $pinb duty 4
 
     else if ($sum <= $l2) then
         echo low traffic, led solid green
