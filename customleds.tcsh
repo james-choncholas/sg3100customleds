@@ -74,9 +74,9 @@ endif
 ### Get bandwidth usage
 # -w X collects for X seconds
 # -q 1 quits after one iteration
-set inbytes = `netstat -w 60 -I $if -q 1 | tail -1 | awk '{ ORS="  "; print $4 }' `
-set outbytes = `netstat -w 60 -I $if -q 1 | tail -1 | awk '{ ORS="  "; print $7 }' `
-@ sum = $inbytes + $outbytes
+set sum = `netstat -w 60 -I $if -q 1 | tail -1 | awk '{ ORS="  "; print $4 }' `
+#set outbytes = `netstat -w 60 -I $if -q 1 | tail -1 | awk '{ ORS="  "; print $7 }' `
+#@ sum = $inbytes + $outbytes
 
 switch ($gwstatus)
 case "none":
